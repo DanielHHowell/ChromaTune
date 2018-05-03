@@ -3,19 +3,18 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import plotly.tools as pt
 import plotly.plotly as py
 import plotly.graph_objs as go
-import numpy as np
 import pandas as pd
 
 
 
 pt.set_credentials_file(username='danielhhowell', api_key='JS9gAxQhNlsv2kih2OKW')
 
-client_id = ''
-client_secret = ''
+client_id = 'eba63584a115452f902d42dee57a5e48'
+client_secret = '88652f89c3b94d4abf858779a9807ee3'
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-results = sp.user_playlist_tracks('tyrosanity','3Q8DsraSJ9JIfiIr4wtyuv')
+results = sp.user_playlist_tracks('tyrosanity','6Yo5A1ltI7E0Ac5zSlwDBA')
 tracks = results['items']
 while results['next']:
     results = sp.next(results)
@@ -45,27 +44,28 @@ for i,j in enumerate(uris):
     data[j]['name'] = names[i]
 
 df = pd.DataFrame.from_dict(data, orient='index')
-df['color'] =
+df['lightness'] = (df['composition']*100)+35
+maxVal = 82
+df['lightness'][df['lightness'] >= maxVal] = maxVal
 
+# Converts the track's features to the colorsphere axes, with hue=valence, saturation=levels, and lightness=composition
+df['color'] = df.apply(lambda row: 'hsl(' + str(row.valence*360)
+                                   + ',' + str(row.levels*100) + '%,'
+                                   + str(row.lightness) + '%)', axis=1)
 
-# x = [data[i]['levels'] for i in data]
-# y = [data[i]['valence'] for i in data]
-# z = [data[i]['composition'] for i in data]
-
-# c = ['hsl('+str(h)+',50%'+',50%)' for h in np.linspace(0, 360, len(z))]
 
 trace1 = go.Scatter3d(
-    x=df['levels'],
-    y=df['valence'],
+    x=df['valence'],
+    y=df['levels'],
     z=df['composition'],
     mode='markers',
     marker=dict(
         size=12,
-        color=df['valence'],                # set color to an array/list of desired values
+        color=df['color'],                # set color to an array/list of desired values
         colorscale='Viridis',   # choose a colorscale
-        opacity=0.8
+        opacity=0.78
     ),
-    text = names
+    text = df['name']
 
 )
 
@@ -76,7 +76,22 @@ layout = go.Layout(
         r=0,
         b=0,
         t=0
-    )
+    ),
+    title= 'Colorsphere of Musical Qualities',
+        hovermode= 'closest',
+        xaxis= dict(
+            title= 'Valence',
+            ticklen= 5,
+            zeroline= False,
+            gridwidth= 2,
+        ),
+        yaxis=dict(
+            title= 'Level',
+            ticklen= 5,
+            gridwidth= 2,
+        ),
+
+        showlegend= True
 )
 fig = go.Figure(data=data, layout=layout)
 py.iplot(fig, filename='3d-scatter-colorscale')
