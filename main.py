@@ -7,7 +7,7 @@ import pandas as pd
 
 
 
-pt.set_credentials_file(username='danielhhowell', api_key='JS9gAxQhNlsv2kih2OKW')
+pt.set_credentials_file(username='danielhhowell', api_key='')
 
 client_id = ''
 client_secret = ''
