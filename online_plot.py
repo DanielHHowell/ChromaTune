@@ -4,13 +4,14 @@ import plotly.tools as pt
 import plotly.plotly as py
 import plotly.graph_objs as go
 import pandas as pd
+from config import *
 
 
 
-pt.set_credentials_file(username='danielhhowell', api_key='')
+pt.set_credentials_file(username=config().plotly_username, api_key=config().plotly_api_key)
 
-client_id = ''
-client_secret = ''
+client_id = config().spotify_client_id
+client_secret = config().spotify_client_secret
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
