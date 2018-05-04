@@ -22,7 +22,7 @@ client_secret = config().spotify_client_secret
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-results = sp.user_playlist_tracks(config().spotify_username,cnfig().spotify_playlist)
+results = sp.user_playlist_tracks(config().spotify_username,config().spotify_playlist)
 tracks = results['items']
 while results['next']:
     results = sp.next(results)
@@ -151,6 +151,29 @@ FIGURE = scatter_plot_3d()
 
 
 app.layout = html.Div([
+    html.Div([
+
+        html.H2('ChromaTune',
+                style={
+                    'position': 'relative',
+                    'top': '0px',
+                    'left': '10px',
+                    'font-family': 'Dosis',
+                    'display': 'inline',
+                    'font-size': '6.0rem',
+                    'color': '#4D637F'
+                }),
+    ], className='row twelve columns', style={'position': 'relative', 'right': '15px'}),
+
+    html.Div([
+        html.Div([
+            html.Div([
+                html.P('Visualize musical qualtiies of songs in a playlist in 3 dimensions'),
+                html.P('The valence (emotional tone) of a song is represented by hue, overall energy level by saturation, and acoustic composition by lightness'),
+            ], style={'margin-left': '10px'}),
+        ], className='twelve columns')
+
+    ], className='row'),
 
     html.Div([
 
