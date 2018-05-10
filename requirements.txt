@@ -1,4 +1,5 @@
 numpy
+pandas
 spotipy
 plotly
 dash

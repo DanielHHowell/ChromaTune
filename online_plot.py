@@ -15,29 +15,29 @@ client_secret = config().spotify_client_secret
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-results = sp.user_playlist_tracks('tyrosanity','6Yo5A1ltI7E0Ac5zSlwDBA')
+results = sp.user_playlist_tracks(config().spotify_username,config().spotify_playlist)
 tracks = results['items']
 while results['next']:
     results = sp.next(results)
     tracks.extend(results['items'])
 
 uris = [i['track']['uri'] for i in tracks]
-names = [i['track']['name'] for i in tracks]
+names = [i['track']['artists'][0]['name']+' - '+i['track']['name'] for i in tracks]
 data = {}
 
 def feature_collector(song):
     try:
         id = sp.audio_features(song)[0]
         track = {}
-        track['levels'] = id['energy']
-        track['valence'] = id['valence']
-        track['composition'] = id['acousticness']
+        track['levels'] = id['energy']*100
+        track['valence'] = id['valence']*100
+        track['composition'] = id['acousticness']*100
         return track
     except:
         track = {}
-        track['levels'] = 0.5
-        track['valence'] = 0.5
-        track['composition'] = 0.5
+        track['levels'] = 50
+        track['valence'] = 50
+        track['composition'] = 50
         return track
 
 for i,j in enumerate(uris):
@@ -45,13 +45,13 @@ for i,j in enumerate(uris):
     data[j]['name'] = names[i]
 
 df = pd.DataFrame.from_dict(data, orient='index')
-df['lightness'] = (df['composition']*100)+35
+df['lightness'] = df['composition']+35
 maxVal = 82
 df['lightness'][df['lightness'] >= maxVal] = maxVal
 
 # Converts the track's features to the colorsphere axes, with hue=valence, saturation=levels, and lightness=composition
-df['color'] = df.apply(lambda row: 'hsl(' + str(row.valence*360)
-                                   + ',' + str(row.levels*100) + '%,'
+df['color'] = df.apply(lambda row: 'hsl(' + str(row.valence*3.6)
+                                   + ',' + str(row.levels) + '%,'
                                    + str(row.lightness) + '%)', axis=1)
 
 
