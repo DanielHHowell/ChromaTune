@@ -38,7 +38,7 @@ def feature_collector(song):
         track = {}
         track['levels'] = id['energy']*100
         track['valence'] = id['valence']*100
-        track['composition'] = id['acousticness']*100
+        track['composition'] = ((id['acousticness']*100)/1.88)+35 #Constrains values relatively to the 35-88 range
         return track
     except:
         track = {}
@@ -52,14 +52,11 @@ for i,j in enumerate(uris):
     data[j]['name'] = names[i]
 
 df = pd.DataFrame.from_dict(data, orient='index')
-df['lightness'] = df['composition']+35
-maxVal = 82
-df['lightness'][df['lightness'] >= maxVal] = maxVal
 
 # Converts the track's features to the colorsphere axes, with hue=valence, saturation=levels, and lightness=composition
 df['color'] = df.apply(lambda row: 'hsl(' + str(row.valence*3.6)
                                    + ',' + str(row.levels) + '%,'
-                                   + str(row.lightness) + '%)', axis=1)
+                                   + str(row.composition) + '%)', axis=1)
 
 app = dash.Dash('chromatune')
 server = app.server
