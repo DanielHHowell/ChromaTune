@@ -8,7 +8,7 @@ import plotly.tools as pt
 import plotly.plotly as py
 import plotly.graph_objs as go
 import pandas as pd
-import flask
+from flask import Flask
 from flask_cors import CORS
 import os
 from config import *
@@ -38,7 +38,7 @@ def feature_collector(song):
         track = {}
         track['levels'] = id['energy']*100
         track['valence'] = id['valence']*100
-        track['composition'] = ((id['acousticness']*100)/1.88)+35 #Constrains values relatively to the 35-88 range
+        track['composition'] = id['acousticness']*100
         return track
     except:
         track = {}
@@ -52,14 +52,21 @@ for i,j in enumerate(uris):
     data[j]['name'] = names[i]
 
 df = pd.DataFrame.from_dict(data, orient='index')
+df['lightness'] = df['composition']+35
+maxVal = 82
+df['lightness'][df['lightness'] >= maxVal] = maxVal
 
 # Converts the track's features to the colorsphere axes, with hue=valence, saturation=levels, and lightness=composition
 df['color'] = df.apply(lambda row: 'hsl(' + str(row.valence*3.6)
                                    + ',' + str(row.levels) + '%,'
-                                   + str(row.composition) + '%)', axis=1)
+                                   + str(row.lightness) + '%)', axis=1)
+server = Flask(__name__)
 
-app = dash.Dash('chromatune')
-server = app.server
+@server.route("/")
+def sayHi():
+    return "Hi from my Flask App!"
+
+app = dash.Dash(__name__, server=server, url_base_pathname='/dash')
 
 def add_markers(figure_data, plot_type = 'scatter3d' ):
     indices = []
@@ -198,4 +205,4 @@ for css in external_css:
     app.css.append_css({"external_url": css})
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True, port=80)
