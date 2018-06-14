@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if not playlist %}
+
+  <div class="container">
+    <div class="mt-1">
+      <h1>Playlist</h1>
+    </div>
+    <p class="lead">You need to log in to see this page</p>
+
+    <a type="button" class="btn btn-default" href="/auth">Login</a>
+  </div>
+
+{% else %}
+
+	<div class="container">
+        <div class="jumbotron">
+
+
+	  <h3>Here are the songs in the playlist: </h3>
+
+    <hr class="half-rule"/>
+
+	  <div class="row">
+
+      <div class="col-sm-4">
+
+
+        {% for i in playlist %}
+          <div class='row'>
+
+              <div class='col-sm-8'>
+                <span>{{ i.track.uri }} </span>
+              </div>
+
+
+          </div>
+        {% endfor %}
+          <a href="http://127.0.0.1:8081/dash">Chromatize!</a>
+      </div>
+      </div>
+
+    </div>
+	</div>
+
+{% endif %}
+
+{% endblock %}
