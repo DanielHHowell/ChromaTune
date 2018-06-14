@@ -12,7 +12,7 @@ app.secret_key = 'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
 
 dash_app = dash.Dash(__name__, server=app, url_base_pathname='/dash')
 
-# ----------------------
+# -------------------- DASH INITIAL LAYOUT INSTANTIATION --------------
 
 dash_app.layout = html.Div([
         html.Div([
@@ -64,13 +64,12 @@ def profile():
 
         profile_data = spotify.get_users_profile(auth_header)
         playlist_data = spotify.get_users_playlists(auth_header)
-        recently_played = spotify.get_users_recently_played(auth_header)
 
-        if valid_token(recently_played):
+
+        if valid_token(profile_data):
             return render_template("profile.html",
                                user=profile_data,
-                               playlists=playlist_data["items"],
-                               recently_played=recently_played["items"])
+                               playlists=playlist_data['items'])
 
     return render_template('profile.html')
 
@@ -94,6 +93,9 @@ def playlist():
             data = analysis.track_parse(playlist_tracks)
             global df
             df = analysis.chromatizer(data)
+
+
+            # ----------------------- DASH BUILDING  -----------------------
 
             BACKGROUND = 'rgb(250, 250, 250)'
 
@@ -125,7 +127,7 @@ def playlist():
                     mode='markers',
                     marker=dict(
                         line=dict(color='#444'),
-                        reversescale=True,
+                        reversescale=False,
                         sizeref=45,
                         sizemode='diameter',
                         opacity=0.7,
@@ -187,7 +189,7 @@ def playlist():
                     html.Div([
 
                         dcc.Graph(id='clickable-graph',
-                                  style=dict(height='1000px', width='1000px'),
+                                  style=dict(height='1200px', width='1200px'),
                                   hoverData=dict(points=[dict(pointNumber=0)]),
                                   figure=FIGURE),
 
@@ -204,6 +206,8 @@ def playlist():
 
             for css in external_css:
                 dash_app.css.append_css({"external_url": css})
+
+            # ----------------------------------------------
 
             return render_template("playlist.html",
                                playlist=playlist_tracks['items'])

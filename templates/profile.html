@@ -18,33 +18,41 @@
 	<div class="container">
 
 
-	  <h3> Pick a playlist you'd like to chromatize! </h3>
+	  <h3> Pick a playlist you'd like to chromatize </h3>
+      <h5>The longer and more musically diverse the playlist the better!
+      <br>
+      (be patient with very long playlists)</h5>
 
     <hr class="half-rule"/>
 
 	  <div class="row">
-
-      <div class="col-sm-4">
-
-
-        {% for playlist in playlists %}
-          <div class='row'>
-            <a href="http://127.0.0.1:8081/playlist?userid={{ user.id }}&id={{ playlist.id }}" style="font-size: 20px">
-
-              <div class='col-sm-8'>
-                <span>{{ playlist.name }} </span>
-                <span>{{ playlist.total }} </span>
-              </div>
-
-
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Length</th>
+        </tr>
+        </thead>
+          <tbody>
+          {% for playlist in playlists %}
+          <tr>
+          <td>
+            <a href="http://127.0.0.1:5000/playlist?userid={{ user.id }}&id={{ playlist.id }}" style="font-size: 18px">
+              {{ playlist.name }}
             </a>
-            <p> Length: 10 songs</p>
-          </div>
-        {% endfor %}
+          </td>
+          <td style="font-size: 18px">
+          {{ playlist.tracks.total }}
+          </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+
+
       </div>
 
     </div>
-	</div>
 
 {% endif %}
 

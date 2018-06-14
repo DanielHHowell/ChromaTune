@@ -187,7 +187,7 @@ def get_users_profile(auth_header):
 
 # https://developer.spotify.com/web-api/get-a-list-of-current-users-playlists/
 def get_users_playlists(auth_header):
-    url = USER_PLAYLISTS_ENDPOINT
+    url = USER_PLAYLISTS_ENDPOINT+'?offset=0&limit=50'
     resp = requests.get(url, headers=auth_header)
     return resp.json()
 
@@ -214,7 +214,7 @@ def get_featured_playlists(auth_header):
     return resp.json()
 
 def get_playlist_tracks(user_id, playlist_id, auth_header):
-    url = "{}/users/{userid}/playlists/{id}/tracks".format(SPOTIFY_API_URL, userid = user_id, id=playlist_id)
+    url = "{}/users/{userid}/playlists/{id}/tracks?offset=0&limit=50".format(SPOTIFY_API_URL, userid = user_id, id=playlist_id)
     resp = requests.get(url, headers=auth_header)
     return resp.json()
 

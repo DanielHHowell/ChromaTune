@@ -19,31 +19,39 @@
         <div class="jumbotron">
 
 
-	  <h3>Here are the songs in the playlist: </h3>
+	  <h3>Here are some songs in this playlist: </h3>
+            <h4><a href="http://127.0.0.1:5000/dash">Chromatize!</a></h4>
 
     <hr class="half-rule"/>
 
-	  <div class="row">
+    	  <div class="row">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Artist</th>
+        </tr>
+        </thead>
+          <tbody>
+          {% for song in playlist %}
+          <tr>
+          <td style="font-size: 18px">
+              {{ song.track.name }}
+          </td>
+          <td style="font-size: 18px">
+          {{ song.track.artists[0].name }}
+          </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+      </table>
 
-      <div class="col-sm-4">
 
-
-        {% for i in playlist %}
-          <div class='row'>
-
-              <div class='col-sm-8'>
-                <span>{{ i.track.uri }} </span>
-              </div>
-
-
-          </div>
-        {% endfor %}
-          <a href="http://127.0.0.1:8081/dash">Chromatize!</a>
-      </div>
-      </div>
 
     </div>
 	</div>
+    </div>
+
 
 {% endif %}
 

@@ -9,12 +9,15 @@
             The most readily quantifiable qualities used here are valence (emotional tone), energy level, and composition (e.g. acousticness).
             The colorsphere is a visual model with 3 dimensions of visual information (hue, saturation, and lightness),
             on to which the musical qualities can be mapped.</p>
-        <p> Here valence is represented by hue, energy level by saturation, and composition by lightness.
-            The lightness factor is constrained between 35-82% to avoid visually-obfuscating overly dark/light colors.</p>
-        <p>It is powered by Python running with Flask, Dash by Plot.ly, and the Spotify API <a href="https://github.com/DanielHHowell/ChromaTune">Link to GitHub page</a></p>
+        <p> Here valence is represented by hue, energy level by saturation, and composition by lightness.</p>
+        <p>It is powered by Python running with Flask, Dash by Plot.ly, and the Spotify API - <a href="https://github.com/DanielHHowell/ChromaTune">Link to GitHub page</a></p>
         <p>- Daniel Howell</p>
+        <br><br>
+        <p><a href="{{ url_for('profile') }}">Click here to login to Spotify and Chromatize your playlist!</p>
     </div>
 
   </div>
+
+
 
 {% endblock %}
