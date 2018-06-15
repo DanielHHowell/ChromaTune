@@ -4,6 +4,11 @@ The colorsphere is a visual model with 3 dimensions of visual information (hue, 
  
 Here valence is represented by hue, energy level by saturation, and composition by lightness.
 
+![](static/imgs/example.png)
+
+
+
+
 The musical qualities are obtained from the Echo Nest/Spotify API, and plotted with Dash by Plot.ly.
 
 Special thanks to <a href="https://github.com/mari-linhares/spotify-flask">Marianne Linhares</a> for 
