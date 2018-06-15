@@ -17,7 +17,8 @@ dash_app = dash.Dash(__name__, server=app, url_base_pathname='/dash')
 dash_app.layout = html.Div([
         html.Div([
 
-            html.H2('ChromaTune',
+            html.A('ChromaTune',
+                   href='http://127.0.0.1:5000/',
                     style={
                         'position': 'relative',
                         'top': '0px',
@@ -161,7 +162,8 @@ def playlist():
             dash_app.layout = html.Div([
                 html.Div([
 
-                    html.H2('ChromaTune',
+                    html.A('ChromaTune',
+                           href='http://127.0.0.1:5000',
                             style={
                                 'position': 'relative',
                                 'top': '0px',
