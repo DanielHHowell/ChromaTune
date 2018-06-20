@@ -29,7 +29,7 @@ dash_app.layout = html.Div([
                                             style={'width':40, 'margin-top':30, 'position':'center'},
                                         ),
                                     ], className='navbar-header')
-                                ], href='http://127.0.0.1:5000'),
+                                ], href='http://chromatune.danielhhowell.com'),
 
                                 #Right header
                                 html.Div([
@@ -124,11 +124,6 @@ def playlist():
             results = analysis.sp.next(results)
             playlist_tracks.extend(results['items'])
 
-        # playlist_tracks = playlist_raw['items']
-
-        # while playlist_raw['next']:
-        #      playlist_tracks = analysis.sp.next(playlist_raw)
-        #      playlist_tracks.update(playlist_raw['items'])
 
         if valid_token(playlist_tracks):
 
@@ -210,7 +205,7 @@ def playlist():
                                         style={'width': 40, 'margin-top': '25%', 'position': 'center'},
                                     ),
                                 ], className='navbar-header')
-                            ], href='http://127.0.0.1:5000'),
+                            ], href='http://chromatune.danielhhowell.com'),
 
                             # Right header
                             html.Div([
