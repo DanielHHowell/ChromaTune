@@ -6,8 +6,6 @@ import dash_html_components as html
 import analysis
 
 
-
-
 app = Flask(__name__)
 app.secret_key = 'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
 
@@ -16,21 +14,54 @@ dash_app = dash.Dash(__name__, server=app, url_base_pathname='/dash')
 # -------------------- DASH INITIAL LAYOUT INSTANTIATION --------------
 
 dash_app.layout = html.Div([
-        html.Div([
+                    html.Nav([
+                        html.Div([
 
-            html.A('Return home to login and generate a plot',
-                   href='http://chromatune.danielhhowell.com',
-                   className='navbar-header',
-                    style={
-                        'position': 'relative',
-                        'top': '0px',
-                        'left': '10px',
-                        'font-family': 'Dosis',
-                        'display': 'inline',
-                        'font-size': '6.0rem',
-                        'color': '#4D637F'
-                    }),
-        ], className='row twelve columns', style={'position': 'relative', 'right': '15px'})])
+                                #Left header
+                                html.A([
+                                    html.Div([
+                                        html.Img(
+                                            src='https://i.imgur.com/UEH2EBT.png',
+                                            style={'width':220, 'margin-top':30},
+                                        ),
+                                        html.Img(
+                                            src='https://i.imgur.com/V5stVH0.png',
+                                            style={'width':40, 'margin-top':30, 'position':'center'},
+                                        ),
+                                    ], className='navbar-header')
+                                ], href='http://127.0.0.1:5000'),
+
+                                #Right header
+                                html.Div([
+                                    html.Ul([
+                                        html.Li([
+                                            html.Div([
+                                                html.A([
+
+                                                    html.Div([
+                                                        html.Img(src='https://i.imgur.com/pmuOmIv.png',
+                                                                style={'width':55, 'margin-top':40, 'margin-right':40, 'position':'center'})
+                                                    ], className='row'),
+
+                                                ], href='http://127.0.0.1:5000/profile')
+                                            ], className='icon-container container')
+                                        ])
+                                    ], className='nav navbar-nav navbar-right')
+                                ], className='navbar-collapse collapse')
+
+                        ],className='container-fluid'),
+                    ],className='navbar navbar-default'),
+                ],id='header')
+
+
+external_css = ["https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css",
+                "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css",
+                "https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css",
+                "//fonts.googleapis.com/css?family=Raleway:400,300,600",
+                "//fonts.googleapis.com/css?family=Dosis:Medium"]
+
+for css in external_css:
+    dash_app.css.append_css({"external_url": css})
 
 # ----------------------- AUTH API PROCEDURE -------------------------
 
@@ -114,9 +145,9 @@ def playlist():
                     y=df['energy'],
                     z=df['composition'],
                     color=df['color'],
-                    xlabel='Valence',
-                    ylabel='Levels',
-                    zlabel='Composition',
+                    xlabel='Valence (Hue)',
+                    ylabel='Energy Level (Saturation)',
+                    zlabel='Composition (Lightness)',
                     plot_type='scatter3d',
             ):
 
@@ -150,16 +181,11 @@ def playlist():
                 layout = dict(
                     font=dict(family='Raleway'),
                     hovermode='closest',
-                    showlegend=True,
+                    showlegend=False,
                     scene=dict(
                         xaxis=axis_template_3d(xlabel),
                         yaxis=axis_template_3d(ylabel),
                         zaxis=axis_template_3d(zlabel),
-                        # camera=dict(
-                        #     up=dict(x=0, y=0, z=1),
-                        #     center=dict(x=0, y=0, z=0),
-                        #     eye=dict(x=0.08, y=2.2, z=0.08)
-                        # )
                     )
                 )
 
@@ -169,50 +195,89 @@ def playlist():
 
             dash_app.layout = html.Div([
                 html.Div([
+                    html.Nav([
+                        html.Div([
 
-                    html.A('ChromaTune',
-                           href='http://chromatune.danielhhowell.com',
-                            style={
-                                'position': 'relative',
-                                'top': '0px',
-                                'left': '10px',
-                                'font-family': 'Dosis',
-                                'display': 'inline',
-                                'font-size': '6.0rem',
-                                'color': '#4D637F'
-                            }),
-                ], className='row twelve columns', style={'position': 'relative', 'right': '15px'}),
+                            # Left header
+                            html.A([
+                                html.Div([
+                                    html.Img(
+                                        src='https://i.imgur.com/UEH2EBT.png',
+                                        style={'width': 220, 'margin-top': '25%'},
+                                    ),
+                                    html.Img(
+                                        src='https://i.imgur.com/V5stVH0.png',
+                                        style={'width': 40, 'margin-top': '25%', 'position': 'center'},
+                                    ),
+                                ], className='navbar-header')
+                            ], href='http://127.0.0.1:5000'),
 
+                            # Right header
+                            html.Div([
+                                html.Ul([
+                                    html.Li([
+                                        html.Div([
+                                            html.A([
+
+                                                html.Div([
+                                                    html.Img(src='https://i.imgur.com/pmuOmIv.png',
+                                                             style={'width': 55, 'margin-top': '25%', 'margin-right': 40,
+                                                                    'position': 'center'})
+                                                ], className='row'),
+
+                                            ], href='http://127.0.0.1:5000/profile')
+                                        ], className='icon-container container')
+                                    ])
+                                ], className='nav navbar-nav navbar-right')
+                            ], className='navbar-collapse collapse')
+
+                        ], className='container-fluid'),
+                    ], className='navbar navbar-default'),
+                ], id='header'),
+
+                #Main body
                 html.Div([
+
                     html.Div([
                         html.Div([
-                            html.P(' '),
-                            html.P(
-                                'The valence (emotional tone) of a song is represented by hue, energy level by saturation, and acoustic composition by lightness'),
-                            html.P(
-                                'Click and drag to rotate the graph in 3D~'),
-                        ], style={'margin-left': '10px'}),
-                    ], className='twelve columns')
 
-                ], className='row'),
+                                html.P(
+                                    'Click and drag to rotate the graph in 3D, scroll to zoom.'),
+                            ], style={'text-align':'center'}),
 
+                    ], className='jumbotron'),
+
+
+                ], className='container'),
+
+                #Graph
                 html.Div([
 
                     html.Div([
 
                         dcc.Graph(id='clickable-graph',
-                                  style=dict(height='1200px', width='1200px'),
+                                  style=dict(height='1400px', width='1400px'),
                                   hoverData=dict(points=[dict(pointNumber=0)]),
                                   figure=FIGURE),
 
-                    ], className='nine columns', style=dict(textAlign='center')),
+                    ]),
 
-                ], className='row'),
+                ], className='row', style={'margin-left':'20%'}),
 
-            ], className='container', )
+                html.Footer([
+                    html.Div([
+                        html.A('by Daniel Howell',
+                               href='https://github.com/danielhhowell')
+                    ], className='container')
+                ], className='footer', style={'position':'bottom',
+                                              'bottom':0, 'width':'100%',
+                                              'height':60, 'line-height':60,
+                                              'background-color':'#f5f5f5'})
+            ])
 
             external_css = ["https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css",
                             "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css",
+                            'https://raw.githubusercontent.com/DanielHHowell/ChromaTune/master/static/css/style.css',
                             "https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css",
                             "//fonts.googleapis.com/css?family=Raleway:400,300,600",
                             "//fonts.googleapis.com/css?family=Dosis:Medium"]
