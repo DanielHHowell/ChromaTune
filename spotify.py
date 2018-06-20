@@ -4,6 +4,12 @@ import json
 import requests
 import sys
 
+# Workaround to support both python 2 & 3
+try:
+    import urllib.request, urllib.error
+    import urllib.parse as urllibparse
+except ImportError:
+    import urllib as urllibparse
 '''
     --------------------- HOW THIS FILE IS ORGANIZED --------------------
 
