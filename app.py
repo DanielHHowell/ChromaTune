@@ -17,15 +17,6 @@ dash_app = dash.Dash(__name__, server=app, url_base_pathname='/dash')
 
 dash_app.layout = html.Div([
         html.Div([
-            html.Img(src="https://i.imgur.com/UEH2EBT.png",
-                style={
-                    'height': '100px',
-                    'float': 'right',
-                    'position': 'relative',
-                    'bottom': '40px',
-                    'left': '50px'
-                },
-                ),
 
             html.A('ChromaTune',
                    href='http://127.0.0.1:5000/',
