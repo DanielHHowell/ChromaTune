@@ -32,7 +32,7 @@ SPOTIFY_AUTH_URL = SPOTIFY_AUTH_BASE_URL.format('authorize')
 SPOTIFY_TOKEN_URL = SPOTIFY_AUTH_BASE_URL.format('api/token')
 
 # Client keys
-CLIENT = json.load(open('/home/danielhhowell/ChromaTune/conf.json', 'r+'))
+CLIENT = json.load(open('/home/DanielHHowell/ChromaTune/conf.json', 'r+'))
 CLIENT_ID = CLIENT['id']
 CLIENT_SECRET = CLIENT['secret']
 
