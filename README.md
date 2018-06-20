@@ -11,5 +11,8 @@ Here valence is represented by hue, energy level by saturation, and composition 
 
 The musical qualities are obtained from the Echo Nest/Spotify API, and plotted with Dash by Plot.ly.
 
+The API's audio features endpoint returns scores for many valuables tags of a track, including: danceability,
+energy, key, loudness, mode, speechiness, acousticness, instrumentalness, liveness, valence, tempo and time signature. 
+
 Special thanks to <a href="https://github.com/mari-linhares/spotify-flask">Marianne Linhares</a> for 
-work developing a Flask interface for the Spotify API.
+work developing towards a Flask interface for the Spotify API.

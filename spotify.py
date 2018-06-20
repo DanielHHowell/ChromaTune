@@ -1,15 +1,9 @@
-from __future__ import print_function
 import base64
 import json
 import requests
 import sys
+import urllib as urllibparse
 
-# Workaround to support both python 2 & 3
-try:
-    import urllib.request, urllib.error
-    import urllib.parse as urllibparse
-except ImportError:
-    import urllib as urllibparse
 '''
     --------------------- HOW THIS FILE IS ORGANIZED --------------------
 
@@ -18,9 +12,6 @@ except ImportError:
     2. ARTISTS
     3. SEARCH
     4. USER RELATED REQUESTS (NEEDS OAUTH)
-    5. ALBUMS
-    6. USERS
-    7. TRACKS
 
 '''
 
@@ -215,55 +206,5 @@ def get_playlist_tracks(user_id, playlist_id, auth_header):
     resp = requests.get(url, headers=auth_header)
     return resp.json()
 
-# ---------------- 5. ALBUMS ------------------------
-# https://developer.spotify.com/web-api/album-endpoints/
-
-GET_ALBUM_ENDPOINT = "{}/{}".format(SPOTIFY_API_URL, 'albums')  # /<id>
-
-# https://developer.spotify.com/web-api/get-album/
-def get_album(album_id):
-    url = "{}/{id}".format(GET_ALBUM_ENDPOINT, id=album_id)
-    resp = requests.get(url)
-    return resp.json()
-
-# https://developer.spotify.com/web-api/get-several-albums/
-def get_several_albums(list_of_ids):
-    url = "{}/?ids={ids}".format(GET_ALBUM_ENDPOINT, ids=','.join(list_of_ids))
-    resp = requests.get(url)
-    return resp.json()
-
-# https://developer.spotify.com/web-api/get-albums-tracks/
-def get_albums_tracks(album_id):
-    url = "{}/{id}/tracks".format(GET_ALBUM_ENDPOINT, id=album_id)
-    resp = requests.get(url)
-    return resp.json()
-
-# ------------------ 6. USERS ---------------------------
-# https://developer.spotify.com/web-api/user-profile-endpoints/
-
-GET_USER_ENDPOINT = '{}/{}'.format(SPOTIFY_API_URL, 'users')
-
-# https://developer.spotify.com/web-api/get-users-profile/
-def get_user_profile(user_id):
-    url = "{}/{id}".format(GET_USER_ENDPOINT, id=user_id)
-    resp = requests.get(url)
-    return resp.json()
-
-# ---------------- 7. TRACKS ------------------------
-# https://developer.spotify.com/web-api/track-endpoints/
-
-GET_TRACK_ENDPOINT = "{}/{}".format(SPOTIFY_API_URL, 'tracks')  # /<id>
-
-# https://developer.spotify.com/web-api/get-track/
-def get_track(track_id):
-    url = "{}/{id}".format(GET_TRACK_ENDPOINT, id=track_id)
-    resp = requests.get(url)
-    return resp.json()
-
-# https://developer.spotify.com/web-api/get-several-tracks/
-def get_several_tracks(list_of_ids):
-    url = "{}/?ids={ids}".format(GET_TRACK_ENDPOINT, ids=','.join(list_of_ids))
-    resp = requests.get(url)
-    return resp.json()
 
 

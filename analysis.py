@@ -12,11 +12,11 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 # Gathering URIs when run as standalone
 # ----------------
 
-# results = sp.user_playlist_tracks(config().spotify_username,config().spotify_playlist)
-# tracks = results['items']
-# while results['next']:
-#     results = sp.next(results)
-#     tracks.extend(results['items'])
+results = sp.user_playlist_tracks(config().spotify_username,config().spotify_playlist)
+tracks = results['items']
+while results['next']:
+    results = sp.next(results)
+    tracks.extend(results['items'])
 
 
 

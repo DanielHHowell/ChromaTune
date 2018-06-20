@@ -18,8 +18,9 @@ dash_app = dash.Dash(__name__, server=app, url_base_pathname='/dash')
 dash_app.layout = html.Div([
         html.Div([
 
-            html.A('ChromaTune',
+            html.A('Return home to login and generate a plot',
                    href='http://chromatune.danielhhowell.com',
+                   className='navbar-header',
                     style={
                         'position': 'relative',
                         'top': '0px',
@@ -210,10 +211,11 @@ def playlist():
 
             ], className='container', )
 
-            external_css = ["https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css",
+            external_css = ["https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css",
+                            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css",
+                            "https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css",
                             "//fonts.googleapis.com/css?family=Raleway:400,300,600",
-                            "//fonts.googleapis.com/css?family=Dosis:Medium",
-                            "https://cdn.rawgit.com/plotly/dash-app-stylesheets/0e463810ed36927caf20372b6411690692f94819/dash-drug-discovery-demo-stylesheet.css"]
+                            "//fonts.googleapis.com/css?family=Dosis:Medium"]
 
             for css in external_css:
                 dash_app.css.append_css({"external_url": css})
