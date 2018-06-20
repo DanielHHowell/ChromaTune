@@ -44,7 +44,7 @@ CLIENT_SECRET = CLIENT['secret']
 
 # Server-side
 CLIENT_SIDE_URL = "http://chromatune.danielhhowell.com"
-REDIRECT_URI = "{}:/callback/".format(CLIENT_SIDE_URL)
+REDIRECT_URI = "{}/callback/".format(CLIENT_SIDE_URL)
 SCOPE = "playlist-read-private playlist-modify-public playlist-modify-private user-read-recently-played user-top-read"
 STATE = ""
 SHOW_DIALOG_bool = True
