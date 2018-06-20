@@ -7,6 +7,7 @@ import analysis
 
 
 
+
 app = Flask(__name__)
 app.secret_key = 'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
 
@@ -16,6 +17,15 @@ dash_app = dash.Dash(__name__, server=app, url_base_pathname='/dash')
 
 dash_app.layout = html.Div([
         html.Div([
+            html.Img(src="https://i.imgur.com/UEH2EBT.png",
+                style={
+                    'height': '100px',
+                    'float': 'right',
+                    'position': 'relative',
+                    'bottom': '40px',
+                    'left': '50px'
+                },
+                ),
 
             html.A('ChromaTune',
                    href='http://127.0.0.1:5000/',
@@ -56,7 +66,7 @@ def valid_token(resp):
 def index():
     return render_template('index.html')
 
-
+#user-inputted axes choice
 @app.route('/profile')
 def profile():
 
@@ -78,21 +88,28 @@ def profile():
 @app.route('/playlist')
 def playlist():
     if 'auth_header' in session:
-        print(session['auth_header'])
         auth_header = session['auth_header']
 
         user_arg = request.args.get('userid')
         playlist_arg = request.args.get('id')
 
 
-        playlist_tracks = spotify.get_playlist_tracks(user_arg,
-                                                      playlist_arg,
-                                                      auth_header)
+        results = analysis.sp.user_playlist_tracks(user_arg,
+                                                    playlist_id=playlist_arg)
+        playlist_tracks = results['items']
+        while results['next']:
+            results = analysis.sp.next(results)
+            playlist_tracks.extend(results['items'])
+
+        # playlist_tracks = playlist_raw['items']
+
+        # while playlist_raw['next']:
+        #      playlist_tracks = analysis.sp.next(playlist_raw)
+        #      playlist_tracks.update(playlist_raw['items'])
 
         if valid_token(playlist_tracks):
 
             data = analysis.track_parse(playlist_tracks)
-            global df
             df = analysis.chromatizer(data)
 
 
@@ -102,7 +119,7 @@ def playlist():
 
             def scatter_plot_3d(
                     x=df['valence'],
-                    y=df['levels'],
+                    y=df['energy'],
                     z=df['composition'],
                     color=df['color'],
                     xlabel='Valence',
@@ -128,7 +145,7 @@ def playlist():
                     mode='markers',
                     marker=dict(
                         line=dict(color='#444'),
-                        reversescale=False,
+                        reversescale=True,
                         sizeref=45,
                         sizemode='diameter',
                         opacity=0.7,
@@ -141,17 +158,16 @@ def playlist():
                 layout = dict(
                     font=dict(family='Raleway'),
                     hovermode='closest',
-                    margin=dict(r=20, t=0, l=0, b=0),
-                    showlegend=False,
+                    showlegend=True,
                     scene=dict(
                         xaxis=axis_template_3d(xlabel),
                         yaxis=axis_template_3d(ylabel),
                         zaxis=axis_template_3d(zlabel),
-                        camera=dict(
-                            up=dict(x=0, y=0, z=1),
-                            center=dict(x=0, y=0, z=0),
-                            eye=dict(x=0.08, y=2.2, z=0.08)
-                        )
+                        # camera=dict(
+                        #     up=dict(x=0, y=0, z=1),
+                        #     center=dict(x=0, y=0, z=0),
+                        #     eye=dict(x=0.08, y=2.2, z=0.08)
+                        # )
                     )
                 )
 
@@ -178,9 +194,11 @@ def playlist():
                 html.Div([
                     html.Div([
                         html.Div([
-                            html.P('Visualize musical qualitiies of songs in a playlist in 3 dimensions'),
+                            html.P(' '),
                             html.P(
-                                'The valence (emotional tone) of a song is represented by hue, overall energy level by saturation, and acoustic composition by lightness'),
+                                'The valence (emotional tone) of a song is represented by hue, energy level by saturation, and acoustic composition by lightness'),
+                            html.P(
+                                'Click and drag to rotate the graph in 3D~'),
                         ], style={'margin-left': '10px'}),
                     ], className='twelve columns')
 
@@ -212,7 +230,7 @@ def playlist():
             # ----------------------------------------------
 
             return render_template("playlist.html",
-                               playlist=playlist_tracks['items'])
+                               playlist=playlist_tracks)
 
 
     return render_template('playlist.html')

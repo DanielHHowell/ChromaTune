@@ -6,14 +6,16 @@
     <div class="jumbotron">
         <h2>About</h2>
         <p>The goal of this project is to visualize musical qualities of songs in a playlist in a 3 dimensional space.
-            The most readily quantifiable qualities used here are valence (emotional tone), energy level, and composition (e.g. acousticness).
-            The colorsphere is a visual model with 3 dimensions of visual information (hue, saturation, and lightness),
-            on to which the musical qualities can be mapped.</p>
-        <p> Here valence is represented by hue, energy level by saturation, and composition by lightness.</p>
+            The qualities used here are valence (emotional tone), energy level, and composition (i.e. "acousticness").
+            The <a href="https://en.wikipedia.org/wiki/Color_solid">colorsphere</a> is a visual model with 3 dimensions of
+            visual information (hue, saturation, and lightness), onto which the musical qualities can be mapped. Specifically,
+            valence is represented by hue, energy level by saturation, and composition by lightness.</p>
+
         <p>It is powered by Python running with Flask, Dash by Plot.ly, and the Spotify API - <a href="https://github.com/DanielHHowell/ChromaTune">Link to GitHub page</a></p>
         <p>- Daniel Howell</p>
         <br><br>
         <p><a href="{{ url_for('profile') }}">Click here to login to Spotify and Chromatize your playlist!</p>
+        <br>
         <img src="{{url_for('static', filename='imgs/example.png')}}" class="center">
     </div>
 

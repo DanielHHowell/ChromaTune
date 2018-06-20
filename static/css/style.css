@@ -6,8 +6,7 @@
   font-weight: 600;
   font-style:normal;
   font-size: 30px;
-  color: #6AE368;
-  margin-top: 10%;
+  margin-top: 15%;
 }
 
 #icon {
@@ -95,4 +94,10 @@
 
 #btn-related {
   margin-top: 10%;
+}
+
+.container {
+  width: auto;
+  max-width: 1200px;
+  padding: 0 15px;
 }
