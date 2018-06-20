@@ -19,7 +19,7 @@ dash_app.layout = html.Div([
         html.Div([
 
             html.A('ChromaTune',
-                   href='http://127.0.0.1:5000/',
+                   href='http://chromatune.danielhhowell.com',
                     style={
                         'position': 'relative',
                         'top': '0px',
@@ -170,7 +170,7 @@ def playlist():
                 html.Div([
 
                     html.A('ChromaTune',
-                           href='http://127.0.0.1:5000',
+                           href='http://chromatune.danielhhowell.com',
                             style={
                                 'position': 'relative',
                                 'top': '0px',
