@@ -2,7 +2,6 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import pandas as pd
 from config import *
-import json
 
 client_id = config().spotify_client_id
 client_secret = config().spotify_client_secret

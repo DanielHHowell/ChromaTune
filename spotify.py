@@ -4,12 +4,6 @@ import json
 import requests
 import sys
 
-# Workaround to support both python 2 & 3
-try:
-    import urllib.request, urllib.error
-    import urllib.parse as urllibparse
-except ImportError:
-    import urllib as urllibparse
 '''
     --------------------- HOW THIS FILE IS ORGANIZED --------------------
 
@@ -38,7 +32,7 @@ SPOTIFY_AUTH_URL = SPOTIFY_AUTH_BASE_URL.format('authorize')
 SPOTIFY_TOKEN_URL = SPOTIFY_AUTH_BASE_URL.format('api/token')
 
 # Client keys
-CLIENT = json.load(open('conf.json', 'r+'))
+CLIENT = json.load(open('/home/danielhhowell/ChromaTune/conf.json', 'r+'))
 CLIENT_ID = CLIENT['id']
 CLIENT_SECRET = CLIENT['secret']
 
