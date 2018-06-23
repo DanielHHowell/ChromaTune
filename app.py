@@ -262,7 +262,7 @@ def playlist():
                     html.Div([
 
                         dcc.Graph(id='clickable-graph',
-                                  style=dict(height='1400px', width='1400px'),
+                                  style=dict(height='1750px', width='1750px'),
                                   hoverData=dict(points=[dict(pointNumber=0)]),
                                   figure=FIGURE),
 

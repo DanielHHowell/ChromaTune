@@ -51,24 +51,12 @@ auth_query_parameters = {
     "client_id": CLIENT_ID
 }
 
-#python 3
-if sys.version_info[0] >= 3:
-    URL_ARGS = "&".join(["{}={}".format(key, urllibparse.quote(val))
-                    for key, val in list(auth_query_parameters.items())])
-else: 
-    URL_ARGS = "&".join(["{}={}".format(key, urllibparse.quote(val))
-                    for key, val in auth_query_parameters.items()])
 
+
+URL_ARGS = "&".join(["{}={}".format(key, urllibparse.quote(val))
+                for key, val in list(auth_query_parameters.items())])
 
 AUTH_URL = "{}/?{}".format(SPOTIFY_AUTH_URL, URL_ARGS)
-
-'''
-    This function must be used with the callback method present in the
-    ../app.py file.
-
-    And of course this will only works if ouath == True
-
-'''
 
 
 def authorize(auth_token):
