@@ -13,6 +13,16 @@ dash_app = dash.Dash(__name__, server=app, url_base_pathname='/dash')
 
 # -------------------- DASH INITIAL LAYOUT INSTANTIATION --------------
 
+external_css = ["https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css",
+                "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css",
+                "https://raw.githubusercontent.com/DanielHHowell/ChromaTune/master/static/css/style.css",
+                "https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css",
+                "//fonts.googleapis.com/css?family=Raleway:400,300,600",
+                "//fonts.googleapis.com/css?family=Dosis:Medium"]
+
+for css in external_css:
+    dash_app.css.append_css({"external_url": css})
+
 dash_app.layout = html.Div([
                     html.Nav([
                         html.Div([
@@ -53,15 +63,6 @@ dash_app.layout = html.Div([
                     ],className='navbar navbar-default'),
                 ],id='header')
 
-
-external_css = ["https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css",
-                "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css",
-                "https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css",
-                "//fonts.googleapis.com/css?family=Raleway:400,300,600",
-                "//fonts.googleapis.com/css?family=Dosis:Medium"]
-
-for css in external_css:
-    dash_app.css.append_css({"external_url": css})
 
 # ----------------------- AUTH API PROCEDURE -------------------------
 
@@ -132,6 +133,16 @@ def playlist():
 
 
             # ----------------------- DASH BUILDING  -----------------------
+
+            external_css = ["https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css",
+                            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css",
+                            "https://raw.githubusercontent.com/DanielHHowell/ChromaTune/master/static/css/style.css",
+                            "https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css",
+                            "//fonts.googleapis.com/css?family=Raleway:400,300,600",
+                            "//fonts.googleapis.com/css?family=Dosis:Medium"]
+
+            for css in external_css:
+                dash_app.css.append_css({"external_url": css})
 
             BACKGROUND = 'rgb(250, 250, 250)'
 
@@ -270,15 +281,6 @@ def playlist():
                                               'background-color':'#f5f5f5'})
             ])
 
-            external_css = ["https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css",
-                            "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css",
-                            'https://raw.githubusercontent.com/DanielHHowell/ChromaTune/master/static/css/style.css',
-                            "https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css",
-                            "//fonts.googleapis.com/css?family=Raleway:400,300,600",
-                            "//fonts.googleapis.com/css?family=Dosis:Medium"]
-
-            for css in external_css:
-                dash_app.css.append_css({"external_url": css})
 
             # ----------------------------------------------
 

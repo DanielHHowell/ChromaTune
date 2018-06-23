@@ -11,12 +11,12 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # Gathering URIs when run as standalone
 # ----------------
-
-results = sp.user_playlist_tracks(config().spotify_username,config().spotify_playlist)
-tracks = results['items']
-while results['next']:
-    results = sp.next(results)
-    tracks.extend(results['items'])
+#
+# results = sp.user_playlist_tracks(config().spotify_username,config().spotify_playlist)
+# tracks = results['items']
+# while results['next']:
+#     results = sp.next(results)
+#     tracks.extend(results['items'])
 
 
 
@@ -30,7 +30,7 @@ def feature_collector(song):
         track['energy'] = id['energy']*100
         track['valence'] = id['valence']*100
         track['composition'] = id['acousticness']*100
-        # track['duration'] = id['duration']/60000
+        #track['duration'] = id['duration_ms']/20000
         return track
 
     except:
