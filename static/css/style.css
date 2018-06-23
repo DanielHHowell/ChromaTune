@@ -101,3 +101,115 @@
   max-width: 1200px;
   padding: 0 15px;
 }
+
+
+
+body {
+	font-family: 'Press Start 2P', cursive;
+
+	/* W3C */
+	background: linear-gradient(top, #ff3232 0%,#fcf528 16%,#28fc28 32%,#28fcf8 50%,#272ef9 66%,#ff28fb 82%,#ff3232 100%);
+
+	/* Firefox */
+	background: -moz-linear-gradient(top, #ff3232 0%, #fcf528 16%, #28fc28 32%, #28fcf8 50%, #272ef9 66%, #ff28fb 82%, #ff3232 100%);
+
+	/* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff3232), color-stop(16%,#fcf528), color-stop(32%,#28fc28), color-stop(50%,#28fcf8), color-stop(66%,#272ef9), color-stop(82%,#ff28fb), color-stop(100%,#ff3232));
+
+	/* Chrome10+,Safari5.1+ */
+	background: -webkit-linear-gradient(top, #ff3232 0%,#fcf528 16%,#28fc28 32%,#28fcf8 50%,#272ef9 66%,#ff28fb 82%,#ff3232 100%);
+
+	background-size: 1000%;
+	-moz-background-size: 1000%;
+	-webkit-background-size: 1000%;
+
+	/* W3C */
+	animation-name: fun-time-awesome;
+	animation-duration: 40s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-play-state: running;
+
+	/* Firefox: */
+	-moz-animation-name: fun-time-awesome;
+	-moz-animation-duration: 40s;
+	-moz-animation-timing-function: linear;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-direction: alternate;
+	-moz-animation-play-state: running;
+
+	/* Chrome, Safari */
+	-webkit-animation-name: fun-time-awesome;
+	-webkit-animation-duration: 40s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-play-state: running;
+}
+
+/* W3C */
+@keyframes fun-time-awesome {
+	0% {background-position: left top;}
+	100% {background-position: left bottom;}
+}
+
+/* Firefox */
+@-moz-keyframes fun-time-awesome {
+	0% {background-position: left top;}
+	100% {background-position: left bottom;}
+}
+
+/* Chrome, Safari */
+@-webkit-keyframes fun-time-awesome {
+	0% {background-position: left top;}
+	100% {background-position: left bottom;}
+}
+
+audio {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	z-index: 50;
+	opacity: 0;
+}
+#counter {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+	text-align: center;
+	z-index: 50;
+}
+.face-source {
+	display: none;
+}
+#faces-container {
+	height: 100%;
+}
+
+
+/* mobile phone */
+@media screen and (max-device-width: 480px) {
+	body {
+		height: 120%;
+	}
+	h1 {
+		font-size: 25px;
+	}
+	h2 {
+		font-size: 12px;
+		top: 50px;
+	}
+	audio {
+		opacity: 1;
+		bottom: 30px;
+		top: 90px;
+		left: 10px;
+	}
+	#crushin {
+		display: none;
+	}
+	#counter {
+		top: 380px;
+	}
+}
