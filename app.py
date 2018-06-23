@@ -246,7 +246,7 @@ def playlist():
                                                                     'position': 'center'})
                                                 ], className='row'),
 
-                                            ], href='http://127.0.0.1:5000/profile')
+                                            ], href='http://chromatune.danielhhowell.com/profile')
                                         ], className='icon-container container')
                                     ])
                                 ], className='nav navbar-nav navbar-right')
