@@ -24,44 +24,59 @@ for css in external_css:
     dash_app.css.append_css({"external_url": css})
 
 dash_app.layout = html.Div([
-                    html.Nav([
-                        html.Div([
+                    html.Div([
+                        html.Nav([
+                            html.Div([
 
-                                #Left header
-                                html.A([
+                                    #Left header
+                                    html.A([
+                                        html.Div([
+                                            html.Img(
+                                                src='https://i.imgur.com/UEH2EBT.png',
+                                                style={'width':220, 'margin-top':30},
+                                            ),
+                                            html.Img(
+                                                src='https://i.imgur.com/V5stVH0.png',
+                                                style={'width':40, 'margin-top':30, 'position':'center'},
+                                            ),
+                                        ], className='navbar-header')
+                                    ], href='http://127.0.0.1:5000'),
+
+                                    #Right header
                                     html.Div([
-                                        html.Img(
-                                            src='https://i.imgur.com/UEH2EBT.png',
-                                            style={'width':220, 'margin-top':30},
-                                        ),
-                                        html.Img(
-                                            src='https://i.imgur.com/V5stVH0.png',
-                                            style={'width':40, 'margin-top':30, 'position':'center'},
-                                        ),
-                                    ], className='navbar-header')
-                                ], href='http://chromatune.danielhhowell.com'),
+                                        html.Ul([
+                                            html.Li([
+                                                html.Div([
+                                                    html.A([
 
-                                #Right header
-                                html.Div([
-                                    html.Ul([
-                                        html.Li([
-                                            html.Div([
-                                                html.A([
+                                                        html.Div([
+                                                            html.Img(src='https://i.imgur.com/pmuOmIv.png',
+                                                                    style={'width':55, 'margin-top':40, 'margin-right':40, 'position':'center'})
+                                                        ], className='row'),
 
-                                                    html.Div([
-                                                        html.Img(src='https://i.imgur.com/pmuOmIv.png',
-                                                                style={'width':55, 'margin-top':40, 'margin-right':40, 'position':'center'})
-                                                    ], className='row'),
+                                                    ], href='http://127.0.0.1:5000/profile')
+                                                ], className='icon-container container')
+                                            ])
+                                        ], className='nav navbar-nav navbar-right')
+                                    ], className='navbar-collapse collapse')
 
-                                                ], href='http://127.0.0.1:5000/profile')
-                                            ], className='icon-container container')
-                                        ])
-                                    ], className='nav navbar-nav navbar-right')
-                                ], className='navbar-collapse collapse')
+                            ],className='container-fluid'),
+                        ],className='navbar navbar-default'),
+                    ],id='header'),
 
-                        ],className='container-fluid'),
-                    ],className='navbar navbar-default'),
-                ],id='header')
+                               # Main body
+                               html.Div([
+
+                                   html.Div([
+                                       html.Div([
+
+                                           html.P(
+                                               'Click back home to login and select a playlist to graph first.'),
+                                       ], style={'text-align': 'center'}),
+
+                                   ], className='jumbotron'),
+                               ], className='container'),
+                    ])
 
 
 # ----------------------- AUTH API PROCEDURE -------------------------
@@ -144,7 +159,7 @@ def playlist():
             for css in external_css:
                 dash_app.css.append_css({"external_url": css})
 
-            BACKGROUND = 'rgb(255, 255, 255)'
+            BACKGROUND = 'rgb(252, 252, 252)'
 
             def scatter_plot_3d(
                     x=df['valence'],
@@ -161,7 +176,7 @@ def playlist():
                     return dict(
                         showbackground=True,
                         backgroundcolor=BACKGROUND,
-                        gridcolor='rgb(255, 255, 255)',
+                        gridcolor='rgb(225, 225, 225)',
                         title=title,
                         type=type,
                         zerolinecolor='rgb(252, 252, 252)'
@@ -209,11 +224,11 @@ def playlist():
                                 html.Div([
                                     html.Img(
                                         src='https://i.imgur.com/UEH2EBT.png',
-                                        style={'width': 220, 'margin-top': '20%'},
+                                        style={'width': 220, 'margin-top': '12%'},
                                     ),
                                     html.Img(
                                         src='https://i.imgur.com/V5stVH0.png',
-                                        style={'width': 40, 'margin-top': '20%', 'position': 'center'},
+                                        style={'width': 40, 'margin-top': '12%', 'position': 'center'},
                                     ),
                                 ], className='navbar-header')
                             ], href='http://127.0.0.1:5000'),
@@ -227,7 +242,7 @@ def playlist():
 
                                                 html.Div([
                                                     html.Img(src='https://i.imgur.com/pmuOmIv.png',
-                                                             style={'width': 55, 'margin-top': '30%', 'margin-right': 40,
+                                                             style={'width': 55, 'margin-top': '30%', 'margin-right': 30,
                                                                     'position': 'center'})
                                                 ], className='row'),
 
@@ -260,18 +275,18 @@ def playlist():
                     html.Div([
 
                         dcc.Graph(id='clickable-graph',
-                                  style=dict(height='1750px', width='1750px'),
+                                  style=dict(height='1600px', width='1750px'),
                                   hoverData=dict(points=[dict(pointNumber=0)]),
                                   figure=FIGURE),
 
                     ]),
 
-                ], className='row', style={'margin-left':'20%'}),
+                ], className='row', style={'margin-left':'15%'}),
 
                 html.Footer([
                     html.Div([
                         html.A('by Daniel Howell',
-                               href='https://github.com/danielhhowell')
+                               href='mailto:danielhhowell@aol.com')
                     ], className='container')
                 ], className='footer', style={'position':'bottom',
                                               'bottom':0, 'width':'100%',
