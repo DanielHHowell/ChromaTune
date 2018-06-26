@@ -35,7 +35,7 @@ CLIENT_ID = CLIENT.spotify_client_id
 CLIENT_SECRET = CLIENT.spotify_client_secret
 
 # Server-side
-CLIENT_SIDE_URL = "http://127.0.0.1:5000"
+CLIENT_SIDE_URL = "http://chromatune.danielhhowell.com"
 REDIRECT_URI = "{}/callback/".format(CLIENT_SIDE_URL)
 SCOPE = "playlist-read-private playlist-modify-public playlist-modify-private user-read-recently-played user-top-read"
 STATE = ""
