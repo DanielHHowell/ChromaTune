@@ -40,7 +40,7 @@ dash_app.layout = html.Div([
                                                 style={'width':40, 'margin-top':30, 'position':'center'},
                                             ),
                                         ], className='navbar-header')
-                                    ], href='http://127.0.0.1:5000'),
+                                    ], href='http://chromatune.danielhhowell.com'),
 
                                     #Right header
                                     html.Div([
@@ -54,7 +54,7 @@ dash_app.layout = html.Div([
                                                                     style={'width':55, 'margin-top':40, 'margin-right':40, 'position':'center'})
                                                         ], className='row'),
 
-                                                    ], href='http://127.0.0.1:5000/profile')
+                                                    ], href='http://chromatune.danielhhowell.com/profile')
                                                 ], className='icon-container container')
                                             ])
                                         ], className='nav navbar-nav navbar-right')
@@ -231,7 +231,7 @@ def playlist():
                                         style={'width': 40, 'margin-top': '12%', 'position': 'center'},
                                     ),
                                 ], className='navbar-header')
-                            ], href='http://127.0.0.1:5000'),
+                            ], href='http://chromatune.danielhhowell.com'),
 
                             # Right header
                             html.Div([
