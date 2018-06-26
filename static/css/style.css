@@ -98,10 +98,14 @@
 
 .container {
   width: auto;
-  max-width: 1750px;
+  max-width: 1300px;
   padding: 0 15px;
+  text-align: center;
 }
 
+.jumbotron {
+  background: rgba(255,255,255,0.75)
+}
 
 
 body {

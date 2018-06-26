@@ -144,7 +144,7 @@ def playlist():
             for css in external_css:
                 dash_app.css.append_css({"external_url": css})
 
-            BACKGROUND = 'rgb(250, 250, 250)'
+            BACKGROUND = 'rgb(255, 255, 255)'
 
             def scatter_plot_3d(
                     x=df['valence'],
@@ -164,7 +164,7 @@ def playlist():
                         gridcolor='rgb(255, 255, 255)',
                         title=title,
                         type=type,
-                        zerolinecolor='rgb(255, 255, 255)'
+                        zerolinecolor='rgb(252, 252, 252)'
                     )
 
                 data = [dict(
@@ -209,14 +209,14 @@ def playlist():
                                 html.Div([
                                     html.Img(
                                         src='https://i.imgur.com/UEH2EBT.png',
-                                        style={'width': 220, 'margin-top': '25%'},
+                                        style={'width': 220, 'margin-top': '20%'},
                                     ),
                                     html.Img(
                                         src='https://i.imgur.com/V5stVH0.png',
-                                        style={'width': 40, 'margin-top': '25%', 'position': 'center'},
+                                        style={'width': 40, 'margin-top': '20%', 'position': 'center'},
                                     ),
                                 ], className='navbar-header')
-                            ], href='http://chromatune.danielhhowell.com'),
+                            ], href='http://127.0.0.1:5000'),
 
                             # Right header
                             html.Div([
@@ -227,7 +227,7 @@ def playlist():
 
                                                 html.Div([
                                                     html.Img(src='https://i.imgur.com/pmuOmIv.png',
-                                                             style={'width': 55, 'margin-top': '25%', 'margin-right': 40,
+                                                             style={'width': 55, 'margin-top': '30%', 'margin-right': 40,
                                                                     'position': 'center'})
                                                 ], className='row'),
 
@@ -252,8 +252,6 @@ def playlist():
                             ], style={'text-align':'center'}),
 
                     ], className='jumbotron'),
-
-
                 ], className='container'),
 
                 #Graph

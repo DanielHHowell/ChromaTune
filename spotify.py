@@ -29,12 +29,12 @@ SPOTIFY_AUTH_URL = SPOTIFY_AUTH_BASE_URL.format('authorize')
 SPOTIFY_TOKEN_URL = SPOTIFY_AUTH_BASE_URL.format('api/token')
 
 # Client keys
-CLIENT = json.load(open('/home/DanielHHowell/ChromaTune/conf.json', 'r+'))
+CLIENT = json.load(open('conf.json', 'r+'))
 CLIENT_ID = CLIENT['id']
 CLIENT_SECRET = CLIENT['secret']
 
 # Server-side
-CLIENT_SIDE_URL = "http://chromatune.danielhhowell.com"
+CLIENT_SIDE_URL = "http://127.0.0.1:5000"
 REDIRECT_URI = "{}/callback/".format(CLIENT_SIDE_URL)
 SCOPE = "playlist-read-private playlist-modify-public playlist-modify-private user-read-recently-played user-top-read"
 STATE = ""
