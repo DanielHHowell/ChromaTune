@@ -56,36 +56,6 @@
   display: None;
 }
 
-.img-search {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-}
-
-.img-playlist {
-  width: 40px;
-  height: 40px;
-}
-
-.img-related {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-}
-
-.img-square {
-  width: 100%;
-  height: 100%;
-}
-
-.artist-title {
-  margin-bottom: 4%;
-}
-
-#little_search {
-  font-size: 15px;
-}
-
 .half-rule {
     margin-left: 0;
     text-align: left;
@@ -106,6 +76,7 @@
 .jumbotron {
   background: rgba(255,255,255,0.75)
 }
+
 
 
 body {
@@ -217,3 +188,4 @@ audio {
 		top: 380px;
 	}
 }
+
