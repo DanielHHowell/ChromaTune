@@ -7,8 +7,6 @@ import analysis
 
 
 app = Flask(__name__)
-app.secret_key = 'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
-
 dash_app = dash.Dash(__name__, server=app, url_base_pathname='/dash')
 
 # -------------------- DASH INITIAL LAYOUT INSTANTIATION --------------
@@ -79,7 +77,12 @@ dash_app.layout = html.Div([
                     ])
 
 
+#Not actually secret
+app.secret_key = 'e5ac358c-f0bf-11e5-9e39-d3b532c10a28'
+
 # ----------------------- AUTH API PROCEDURE -------------------------
+
+
 
 @app.route("/auth")
 def auth():
